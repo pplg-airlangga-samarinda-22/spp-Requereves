@@ -1,12 +1,16 @@
-<?php
-$id_petugas = $_GET['id_petugas'];
+<?php 
 
-include '../koneksi.php';
-$sql = "DELETE FROM petugas WHERE id_petugas='$id_petugas'";
-$query = mysqli_query($koneksi, $sql);
+session_start();
 
-if($query) {
-    header("Location:?url=petugas");
-}else{
-    echo"<script>alert('Maaf Data Tidak Terhapus'); window.locatin.assign('?url=petugas'); </script>";
+require "../koneksi.php";
+if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+    $id_petugas = $_GET['id_petugas'];
+    $sql = "DELETE FROM petugas WHERE id_petugas=?";
+    $row = $koneksi->execute_query($sql, [$id_petugas]);
+
+    var_dump($sql);
+    if($row){
+        header("Location:petugas.php");
+    }else 
+        header("Gagal hapus Location:petugas.php");
 }

@@ -1,37 +1,71 @@
 <?php
-$id_petugas = $_GET['id_petugas'];
-include '../koneksi.php';
-$sql = "SELECT * FROM petugas WHERE id_petugas='$id_petugas'";
-$query = mysqli_query($koneksi, $sql);
-$data = mysqli_fetch_array($query);
+    session_start();
+    require "../koneksi.php";
+
+
+    if ( $_SERVER['REQUEST_METHOD'] === 'GET') {
+          $id = $_GET['id'];
+          $sql = "SELECT * FROM petugas where id_petugas=?"; 
+          $row = $koneksi->execute_query($sql, [$id])->fetch_assoc();
+
+          $nama_petugas = $row['nama_petugas'];
+          $username = $row['username'];
+          $level = $row['level'];
+
+        }elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            $id = $_GET['id'];
+            $nama = $_POST['nama'];
+            $username = $_POST['username'];
+            $level = $_POST['level'];
+
+            $sql = "UPDATE petugas SET nama_petugas=?, username=?, password=?, level=? WHERE id_petugas=?";
+            $row = $koneksi->execute_query($sql, [$nama, $username, $password, $level, $id,]);
+
+            if ($row) {
+                header("Location:petugas.php");
+            }
+        }
+    
 ?>
 
-<h5>Halaman Edit Petugas</h5>
-<a href="?url=petugas" class="btn btn-primary"> KEMBALI</a>
-<hr>
-<form method="post" action="?url=proses-edit-petugas$id_petugas=<?= $id_petugas; ?>">
-    <div class="form-group mb-2">
-        <label>Username</label>
-        <input value="<?= $data['username'] ?>"type="text" name="username" class="form-control" required>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pegawai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg">
+        <h1 class="text-2xl font-bold text-center mb-6">Edit Pegawai</h1>
+        <form action="" method="post" class="space-y-4">
+            <div>
+                <label for="nama" class="block text-gray-700 font-medium mb-2">Nama</label>
+                <input type="text" name="nama" id="nama" value="<?= $nama_petugas ?>" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+            </div>
+            <div>
+                <label for="username" class="block text-gray-700 font-medium mb-2">Username</label>
+                <input type="teks" name="username" id="username" value="<?= $username ?>" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+            </div>
+            <div class="mb-4">
+                <label for="level" class="block text-sm font-medium text-gray-700">Role</label>
+                <select name="level" class="w-full p-2 border rounded" required>
+                    <option value="">Pilih Level Petugas</option>
+                    <option value="admin">Admin</option>
+                    <option value="pegawai  ">Pegawai</option>
+                </select>
+            </div>
+
+            <div class="flex justify-between items-center mt-6">
+                <a href="petugas.php" class="text-red-500 hover:text-red-700 font-medium">Batal</a>
+                <button type="submit" class="bg-blue-500 text-white font-medium px-6 py-2 rounded-lg hover:bg-blue-600 transition">Submit</button>
+            </div>
+        </form>
     </div>
-    <div class="form-group mb-2">
-        <label>Password</label>
-        <input value="<?= $data['password'] ?>" type="text" name="password" class="form-control" required>
-    </div>
-    <div class="form-group mb-2">
-        <label>Nama Petugas</label>
-        <input value='<?= $data['nama_petugas']?>' type="text" name="nama_petugas" class="form-control" required>
-    </div>
-    <div class="form-group mb-2">
-        <label>Level Petugas</label>
-        <select name="level" class="form-control" required >
-            <option value="<?= $data['level']?> "> <?= $data['level'] ?> </option>
-            <option value="admin"> Admin </option>
-            <option value="petugas"> Petugas </option>
-        </select>
-    </div>
-    <div class="form-group">
-            <button type="submit" class="btn btn-success">SIMPAN</button>
-            <button type="reset" class="btn btn-warning">RESET</button>
-    </div>
-</form>
+</body>
+
+</html>

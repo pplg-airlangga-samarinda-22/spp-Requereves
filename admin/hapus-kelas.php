@@ -6,7 +6,7 @@ $sql = "DELETE FROM kelas WHERE id_kelas='$id_kelas'";
 $query = mysqli_query($koneksi, $sql);
 
 if($query) {
-    header("Location:?url=kelas");
+    header("Location:kelas.php");
 }else{
-    echo"<script>alert('Maaf Data Tidak Terhapus'); window.locatin.assign('?url=kelas'); </script>";
+    echo"<script>alert('Maaf Data Tidak Terhapus'); window.locatin.assign('kelas.php'); </script>";
 }

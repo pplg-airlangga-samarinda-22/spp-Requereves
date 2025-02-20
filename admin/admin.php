@@ -16,11 +16,10 @@ session_start();
         <div class="alert alert-info">
             Anda Login Sebagai <b>ADMINISTRATOR</b> Aplikasi Pembayaran SPP. 
         </div>
-        <a href="admin.php" class="btn btn-primary"> Administrator</a>
         <a href="spp.php" class="btn btn-primary"> SPP</a>
-        <a href="admin.php?url=kelas" class="btn btn-primary"> Kelas</a>
-        <a href="admin.php?url=siswa" class="btn btn-primary"> Siswa</a>
-        <a href="admin.php?url=petugas" class="btn btn-primary"> Petugas</a>
+        <a href="kelas.php" class="btn btn-primary"> Kelas</a>
+        <a href="siswa.php" class="btn btn-primary"> Siswa</a>
+        <a href="petugas.php" class="btn btn-primary"> Petugas</a>
         <a href="admin.php?url=pembayaran" class="btn btn-primary"> Pembayaran</a>
         <a href="admin.php?url=laporan" class="btn btn-primary"> laporan</a>
         <a href="../logout.php" class="btn btn-primary"> logout</a>

@@ -8,11 +8,12 @@ $alamat = $_POST['alamat'];
 $no_telp = $_POST['no_telp'];
 $id_spp = $_POST['id_spp'];
 
-include '../Koneksi.php';
+include '../koneksi.php';
 $sql = "INSERT INTO siswa(nisn,nis,nama,id_kelas,alamat,no_telp,id_spp) VALUES('$nisn','$nis','$nama','$id_kelas','$alamat','$no_telp','$id_spp')";
 $query = mysqli_query($koneksi, $sql);
+
 if ($query) {
-    header("Location:?url=siswa");
+    header("Location:siswa.php");
 }else{
-    echo "<script>alert('Maaf Data Tidak Tersimpan'); window.location.assign('?url=siswa');</script>";
+    echo "<script>alert('Maaf Data Tidak Tersimpan'); window.location.assign('siswa.php');</script>";
 }   

@@ -1,5 +1,5 @@
 <h5>Halaman Data Pembayaran</h5>
-<a href="?url=tambah-siswa" class="btn btn-primary">Tambah Siswa</a>
+<a href="tambah-siswa.php" class="btn btn-primary">Tambah Siswa</a>
 <hr>
 <table class="table table-striped table-bordered">
     <tr class="fw-bold">

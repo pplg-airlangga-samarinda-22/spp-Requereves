@@ -2,11 +2,11 @@
 
 $nisn = $_GET['nisn'];
 
-include '../Koneksi.php';
+include '../koneksi.php';
 $sql = "DELETE FROM siswa WHERE nisn='$nisn'";
 $query = mysqli_query($koneksi, $sql);
 if ($query) {
-    header("Location:?url=siswa");
+    header("Location:?url=siswa.php");
 }else{
-    echo "<script>alert('Maaf Data Tidak Terhapus'); window.location.assign('?url=siswa');</script>";
+    echo "<script>alert('Maaf Data Tidak Terhapus'); window.location.assign('?url=siswa.php');</script>";
 }   

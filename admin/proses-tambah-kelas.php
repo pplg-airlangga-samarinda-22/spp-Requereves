@@ -3,11 +3,11 @@
 $nama_kelas = $_POST['nama_kelas'];
 $kompetensi_keahlian = $_POST['kompetensi_keahlian'];
 
-include '../Koneksi.php';
+include '../koneksi.php';
 $sql = "INSERT INTO kelas(nama_kelas,kompetensi_keahlian) VALUES('$nama_kelas','$kompetensi_keahlian')";
 $query = mysqli_query($koneksi, $sql);
 if ($query) {
-    header("Location:?url=kelas");
+    header("Location:kelas.php");
 }else{
-    echo "<script>alert('Maaf Data Tidak Tersimpan'); window.location.assign('?url=spp');</script>";
+    echo "<script>alert('Maaf Data Tidak Tersimpan'); window.location.assign('kelas.php');</script>";
 }
